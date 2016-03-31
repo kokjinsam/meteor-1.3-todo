@@ -1,0 +1,12 @@
+{
+  "presets": [
+    "meteor",
+    "es2015",
+    "stage-0",
+    "react",
+  ],
+  "plugins": [
+    "react-require",
+    "jsx-control-statements"
+  ]
+}
