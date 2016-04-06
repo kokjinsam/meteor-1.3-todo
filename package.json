@@ -2,7 +2,8 @@
   "name": "meteor-todo",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "storybook": "start-storybook -p 9001"
   },
   "dependencies": {
     "classnames": "^2.2.3",
@@ -30,6 +31,7 @@
     "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
+    "@kadira/storybook": "^1.1.0",
     "babel-core": "^6.7.4",
     "babel-eslint": "^6.0.0-beta.6",
     "babel-plugin-react-require": "^2.1.0",

@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { wrapStyle } from '/imports/app/libs/radium';
+import { wrapStyle } from '../../../../libs/radium';
 import IconButton from 'material-ui/lib/icon-button';
 
 import styles from './styles';
