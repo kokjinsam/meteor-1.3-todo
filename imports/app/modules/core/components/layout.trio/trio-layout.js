@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { wrapStyle } from '/imports/app/libs/radium';
+import { wrapStyle } from '../../../../libs/radium';
 
 import styles from './styles';
 
