@@ -8,7 +8,8 @@ import useSheet from 'react-jss';
 import styles from './jss';
 
 const propTypes = {
-  onClickAddButton: PropTypes.func,
+  sheet: PropTypes.any.isRequired,
+  onClickAddButton: PropTypes.func.isRequired,
 };
 
 class TodoInput extends Component {
@@ -30,22 +31,25 @@ class TodoInput extends Component {
     const { classes } = this.props.sheet;
 
     return (
-      <Placeholder
-        height="5.5rem"
-        backgroundColor="none"
+      <NoSSR
+        onSSR={
+          <Placeholder
+            loading
+            height="5.5rem"
+            backgroundColor="none"
+          />
+        }
       >
-        <NoSSR>
-          <div className={classes.input}>
-            <TextField
-              ref="todo"
-              hintText="What are you supposed to do?"
-            />
-            <IconButton onClick={this.handleClickAddButton}>
-              <i className="material-icons">playlist_add</i>
-            </IconButton>
-          </div>
-        </NoSSR>
-      </Placeholder>
+        <div className={classes.input}>
+          <TextField
+            ref="todo"
+            hintText="What are you supposed to do?"
+          />
+          <IconButton onClick={this.handleClickAddButton}>
+            <i className="material-icons">playlist_add</i>
+          </IconButton>
+        </div>
+      </NoSSR>
     );
   }
 }

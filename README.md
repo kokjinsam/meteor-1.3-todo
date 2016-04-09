@@ -19,7 +19,7 @@
 
 ## Sample
 
-![gif](./public/todo-demo.gif)
+![gif](./.gifs/todo-demo.gif)
 
 ## Some explanations / gotchas
 

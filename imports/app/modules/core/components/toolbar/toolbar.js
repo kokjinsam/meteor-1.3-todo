@@ -14,13 +14,11 @@ const Toolbar = ({ sheet }) => {
   const { classes } = sheet;
 
   return (
-    <Placeholder height="5.6rem">
-      <NoSSR>
-        <Appbar className={classes.toolbar}>
-          Simple Todo
-        </Appbar>
-      </NoSSR>
-    </Placeholder>
+    <NoSSR onSSR={<Placeholder height="5.6rem" />}>
+      <Appbar className={classes.toolbar}>
+        Simple Todo
+      </Appbar>
+    </NoSSR>
   );
 };
 

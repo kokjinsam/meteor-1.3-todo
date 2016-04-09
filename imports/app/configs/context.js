@@ -4,9 +4,14 @@ import { FlowRouter } from 'meteor/kadira:flow-router-ssr';
 import { Tracker } from 'meteor/tracker';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 export default function ({ reducer }) {
-  const Store = createStore(reducer, applyMiddleware(thunk));
+  const logger = createLogger();
+  const Store = createStore(
+    reducer,
+    applyMiddleware(thunk, logger)
+  );
 
   return {
     Meteor,

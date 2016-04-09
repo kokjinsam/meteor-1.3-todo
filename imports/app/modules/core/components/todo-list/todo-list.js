@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import NoSSR from 'react-no-ssr';
 import useSheet from 'react-jss';
 import TodoInput from './todo-input';
 import TodoItem from './todo-item';
@@ -25,7 +24,6 @@ const TodoList = ({
   const { classes } = sheet;
 
   return (
-  <NoSSR>
     <div>
       <TodoInput onClickAddButton={onClickAddButton} />
       <If condition={isSaving}>
@@ -52,7 +50,6 @@ const TodoList = ({
         }
       </ul>
     </div>
-  </NoSSR>
   );
 };
 
