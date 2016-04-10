@@ -57,7 +57,7 @@
   },
   "ecmascript-hot": {
     "transformStateless": {
-      "pathMatch": "\\.jsx?$",
+      "pathMatch": "\\.jsx?$"
     }
   }
 }

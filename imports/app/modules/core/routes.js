@@ -30,4 +30,19 @@ export default function (injectDeps, { FlowRouter }) {
       });
     },
   });
+
+  FlowRouter.route('/get-data-from-method', {
+    name: 'hello',
+    action() {
+      setTitle('Get Data from Method');
+      addMetas(defaultMetas);
+      addLinks(defaultLinks);
+
+      mount(TrioLayoutCtx, {
+        topNavigation: () => (<Toolbar />),
+        content: () => (<TodoList />),
+        footer: () => (<Footer />),
+      });
+    },
+  });
 }

@@ -2,7 +2,7 @@
 
 ## Stack:
 
-- Meteor 1.3
+- Meteor 1.3.X
 - Mantra
 - React
 - JSS
@@ -19,7 +19,7 @@
 
 ## Sample
 
-![gif](./.gifs/todo-demo.gif)
+![gif](./.gifs/todo.gif)
 
 ## Some explanations / gotchas
 
@@ -41,7 +41,16 @@
 
 5. **Folder structure is slightly different than Mantra's**
 
-  Check out `imports` folder to see the tiny differences. Everything `imports ... from ...` in the `imports` folder should be relative imports. Just in case, MDG decides to make lazy-loading default and remove the usage of `imports` folder.
+  Check out `imports` folder to see the tiny differences. Every `imports ... from ...` in the `imports` folder should be relative imports. Just in case, MDG decides to make lazy evaluation default and remove the usage of `imports` folder. Since this Todo is mainly SSR, methods are defined in the `/app` directory to achieve latency compensation. For sensitive server codes, I define it in the `/commands` folder. Then import the commands in the `/app` directory.
+
+6. **Put CSS (configurations) files in `/client`**
+
+  Handling stylesheets is one of the tough parts while doing SSR. Through trials and errors, I found out that putting stylesheets in the client folder is the best way so far.
+
+  Here's what I tested so far:
+  - Put CSS files in the `/public` folder then reference it in the `head`. Downside of this approach is that there will be glitches on subsequent page load. I'm guessing it's because all client-side code are sent to the client on the first page load. On subsequent load, CSS files are not referenced while server is rendering the page but client-code is still on the client.
+  - Import CSS files in JS files. Same as issue as above.
+
 
 ## Right click -> view page source -> tadaa!
 
