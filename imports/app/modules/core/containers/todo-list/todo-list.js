@@ -1,8 +1,8 @@
 import TodoList from '../../components/todo-list';
-import { useDeps, composeWithTracker, composeAll } from 'mantra-core';
+import { useDeps, compose, composeWithTracker, composeAll } from 'mantra-core';
 
-export const composer = ({ context }, onData) => {
-  const { Meteor, Collections, Store } = context();
+export const collectionComposer = ({ context }, onData) => {
+  const { Meteor, Collections } = context();
 
   let todos;
   if (Meteor.subscribe('todo.list').ready()) {
@@ -20,29 +20,36 @@ export const composer = ({ context }, onData) => {
       },
     }).fetch();
     if (todos) {
-      onData(null, {
-        todos,
-        isSaving: Store.getState().todos.saving,
-        isChecking: Store.getState().todos.checking,
-      });
+      onData(null, { todos });
     } else {
       onData();
     }
   }
 
-  onData(null, {
-    todos,
-    isSaving: Store.getState().todos.saving,
-    isChecking: Store.getState().todos.checking,
-  });
+  onData(null, { todos });
+  return;
+};
 
-  return Store.subscribe(() => {
+export const stateComposer = ({ context }, onData) => {
+  const { Store } = context();
+
+  const unsubscribe = Store.subscribe(() => {
     onData(null, {
-      todos,
       isSaving: Store.getState().todos.saving,
       isChecking: Store.getState().todos.checking,
     });
   });
+
+  onData(null, {
+    isSaving: Store.getState().todos.saving,
+    isChecking: Store.getState().todos.checking,
+  });
+
+  const cleanUp = () => {
+    unsubscribe();
+  };
+
+  return cleanUp;
 };
 
 export const depsMapper = (context, actions) => {
@@ -67,6 +74,7 @@ export const depsMapper = (context, actions) => {
 };
 
 export default composeAll(
-  composeWithTracker(composer),
+  composeWithTracker(collectionComposer),
+  compose(stateComposer),
   useDeps(depsMapper)
 )(TodoList);
