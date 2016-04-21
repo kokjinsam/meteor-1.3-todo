@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
-import useSheet from 'react-jss';
+import { wrapStyle } from '../../../../libs/radium';
 import TodoInput from './todo-input';
 import TodoItem from './todo-item';
-
+import { Meteor } from 'meteor/meteor';
 import styles from './styles';
+import { TodosCache } from '/imports/lib/collections';
 
 const privatePropTypes = {
   todos: PropTypes.array.isRequired,
@@ -13,48 +14,53 @@ const privatePropTypes = {
   isChecking: PropTypes.bool.isRequired,
 };
 
-const TodoList = ({
-  todos,
-  isSaving,
-  isChecking,
-  onClickAddButton,
-  onClickCheckBtn,
-  sheet,
-}) => {
-  const { classes } = sheet;
+class TodoList extends React.Component {
+  componentDidMount() {
+    console.log('mounted');
+  }
 
-  return (
-    <div>
-      <TodoInput onClickAddButton={onClickAddButton} />
-      <If condition={isSaving}>
-        <div className={classes.loading}>
-          saving todo...
-        </div>
-      </If>
-      <If condition={isChecking}>
-        <div className={classes.loading}>
-          checking todo...
-        </div>
-      </If>
-      <ul className={classes.list}>
-        {
-          todos.map((todo) => (
-            <TodoItem
-              key={todo._id}
-              id={todo._id}
-              completed={todo.completed}
-              onClickCheckBtn={onClickCheckBtn}
-              title={todo.todo}
-            />
-          ))
-        }
-      </ul>
-    </div>
-  );
-};
+  render() {
+    const {
+      todos,
+      isSaving,
+      isChecking,
+      onClickAddButton,
+      onClickCheckBtn,
+    } = this.props;
+
+    return (
+      <div>
+        <TodoInput onClickAddButton={onClickAddButton} />
+        <If condition={isSaving}>
+          <div style={styles.loading}>
+            saving todo...
+          </div>
+        </If>
+        <If condition={isChecking}>
+          <div style={styles.loading}>
+            checking todo...
+          </div>
+        </If>
+        <ul style={styles.list}>
+          {
+            todos.map((todo) => (
+              <TodoItem
+                key={todo._id}
+                id={todo._id}
+                completed={todo.completed}
+                onClickCheckBtn={onClickCheckBtn}
+                title={todo.todo}
+              />
+            ))
+          }
+        </ul>
+      </div>
+    );
+  }
+}
 
 TodoList.propTypes = {
   ...privatePropTypes,
 };
 
-export default useSheet(TodoList, styles);
+export default wrapStyle(TodoList);

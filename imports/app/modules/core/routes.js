@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'react-mounter';
+import { Todos } from '/imports/lib/collections';
 
 import { setTitle, addMetas, addLinks, addMeta } from '../../libs/dochead';
 import { defaultMetas, defaultLinks } from '../../configs/head';
@@ -9,7 +10,17 @@ import Toolbar from './components/toolbar';
 import Footer from './components/footer';
 import TodoList from './containers/todo-list';
 
-export default function (injectDeps, { FlowRouter }) {
+function getTodos() {
+  return Todos.find(
+    {},
+    {
+      sort: {
+        createdAt: -1,
+      },
+    }).fetch();
+}
+
+export default function (injectDeps, { Meteor, FlowRouter }) {
   const TrioLayoutCtx = injectDeps(TrioLayout);
 
   FlowRouter.route('/', {
@@ -23,11 +34,21 @@ export default function (injectDeps, { FlowRouter }) {
         content: 'woohooo',
       });
 
+      /*
+      const getTodos = require('/imports/server/libs/test').getTodos;
+      */
+      console.log(getTodos);
+      const todos = getTodos();
+      console.log(todos);
+      console.log(FlowRouter.ssrContext.get());
+
+      console.log('mounting');
       mount(TrioLayoutCtx, {
         topNavigation: () => (<Toolbar />),
         content: () => (<TodoList />),
         footer: () => (<Footer />),
       });
+      console.log('mounted');
     },
   });
 
