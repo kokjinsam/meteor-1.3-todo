@@ -1,5 +1,7 @@
 import React from 'react';
 import { mount } from 'react-mounter';
+// import { Provider } from 'react-apollo';
+
 import { Todos } from '/imports/lib/collections';
 
 import { setTitle, addMetas, addLinks, addMeta } from '../../libs/dochead';
@@ -20,8 +22,15 @@ function getTodos() {
     }).fetch();
 }
 
-export default function (injectDeps, { Meteor, FlowRouter }) {
+export default function (injectDeps, { FlowRouter, Store, Client }) {
   const TrioLayoutCtx = injectDeps(TrioLayout);
+
+  // here we can put provider here
+  // const TrioLayoutProvider = () => (
+  //   <Provider store={Store} client={Client}>
+  //     <TrioLayoutCtx />
+  //   </Provider>
+  // );
 
   FlowRouter.route('/', {
     name: 'hello',
@@ -34,21 +43,11 @@ export default function (injectDeps, { Meteor, FlowRouter }) {
         content: 'woohooo',
       });
 
-      /*
-      const getTodos = require('/imports/server/libs/test').getTodos;
-      */
-      console.log(getTodos);
-      const todos = getTodos();
-      console.log(todos);
-      console.log(FlowRouter.ssrContext.get());
-
-      console.log('mounting');
       mount(TrioLayoutCtx, {
         topNavigation: () => (<Toolbar />),
         content: () => (<TodoList />),
         footer: () => (<Footer />),
       });
-      console.log('mounted');
     },
   });
 

@@ -11,6 +11,10 @@ const reducer = combineReducers({
   ...coreReducers,
 });
 
+// const reducers = {
+//   ...coreReducers,
+// };
+
 // init context
 const context = initContext({ reducer });
 

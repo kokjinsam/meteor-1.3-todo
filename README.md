@@ -5,10 +5,11 @@
 - Meteor 1.3.X
 - Mantra
 - React
-- JSS
+- Aphrodite
 - Radium
 - Redux
 - FlowRouter SSR
+- Apollo
 
 ## Some other goodies:
 
