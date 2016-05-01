@@ -1,5 +1,4 @@
 import { createApp } from 'mantra-core';
-import { combineReducers } from 'redux';
 import initContext from './configs/context';
 
 // modules
@@ -7,16 +6,12 @@ import coreModule from './modules/core';
 
 // combine all module reducers
 const coreReducers = coreModule.reducers;
-const reducer = combineReducers({
+const reducers = {
   ...coreReducers,
-});
-
-// const reducers = {
-//   ...coreReducers,
-// };
+};
 
 // init context
-const context = initContext({ reducer });
+const context = initContext({ reducers });
 
 // create app
 const app = createApp(context);

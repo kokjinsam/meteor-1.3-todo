@@ -1,36 +1,19 @@
 import React from 'react';
-import { mount } from 'react-mounter';
-// import { Provider } from 'react-apollo';
-
-import { Todos } from '/imports/lib/collections';
+import { Meteor } from 'meteor/meteor';
+import { mount } from '../../libs/mounter';
+import { StyleSheet } from 'aphrodite';
 
 import { setTitle, addMetas, addLinks, addMeta } from '../../libs/dochead';
 import { defaultMetas, defaultLinks } from '../../configs/head';
 
-import TrioLayout from './components/layout.trio';
-import Toolbar from './components/toolbar';
-import Footer from './components/footer';
-import TodoList from './containers/todo-list';
+import TrioLayout from './containers/layout.trio';
 
-function getTodos() {
-  return Todos.find(
-    {},
-    {
-      sort: {
-        createdAt: -1,
-      },
-    }).fetch();
-}
+export default function (injectDeps, { FlowRouter }) {
+  if (Meteor.isClient) {
+    StyleSheet.rehydrate(window.renderedClasses);
+  }
 
-export default function (injectDeps, { FlowRouter, Store, Client }) {
   const TrioLayoutCtx = injectDeps(TrioLayout);
-
-  // here we can put provider here
-  // const TrioLayoutProvider = () => (
-  //   <Provider store={Store} client={Client}>
-  //     <TrioLayoutCtx />
-  //   </Provider>
-  // );
 
   FlowRouter.route('/', {
     name: 'hello',
@@ -44,24 +27,24 @@ export default function (injectDeps, { FlowRouter, Store, Client }) {
       });
 
       mount(TrioLayoutCtx, {
-        topNavigation: () => (<Toolbar />),
-        content: () => (<TodoList />),
-        footer: () => (<Footer />),
+        content: () => (<p>Content <a href="/test">test</a></p>),
       });
     },
   });
 
-  FlowRouter.route('/get-data-from-method', {
-    name: 'hello',
+  FlowRouter.route('/test', {
+    name: 'test',
     action() {
-      setTitle('Get Data from Method');
+      setTitle('Simple Todo');
       addMetas(defaultMetas);
       addLinks(defaultLinks);
+      addMeta({
+        name: 'description',
+        content: 'woohooo',
+      });
 
       mount(TrioLayoutCtx, {
-        topNavigation: () => (<Toolbar />),
-        content: () => (<TodoList />),
-        footer: () => (<Footer />),
+        content: () => (<p>test</p>),
       });
     },
   });

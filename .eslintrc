@@ -10,7 +10,8 @@
 
   "plugins": [
     "react",
-    "jsx-control-statements"
+    "jsx-control-statements",
+    "graphql"
   ],
 
   "globals": {

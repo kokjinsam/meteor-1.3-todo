@@ -5,21 +5,33 @@ import { Tracker } from 'meteor/tracker';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-// import ApolloClient from 'apollo-client';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import userMiddleware from './useraccount';
 
-export default function ({ reducer }) {
-  // const Client = new ApolloClient();
-  // const reducer = combineReducers({
-  //   ...reducers,
-  //   apollo: Client.reducer(),
-  // });
+export default function ({ reducers }) {
+  const url = Meteor.absoluteUrl('graphql');
+  const networkInterface = createNetworkInterface(url);
+  /*
+  networkInterface.use([{
+    applyMiddleware(request, next) {
+      userMiddleware(request, next);
+    },
+  }]);
+  */
+  const Client = new ApolloClient({
+    networkInterface,
+  });
+  const reducer = combineReducers({
+    ...reducers,
+    apollo: Client.reducer(),
+  });
   const logger = createLogger();
   const Store = createStore(
     reducer,
     applyMiddleware(
       thunk,
       logger,
-      // Client.middleware()
+      Client.middleware(),
     )
   );
 
@@ -29,7 +41,7 @@ export default function ({ reducer }) {
     Collections,
     Tracker,
     Store,
-    // Client,
+    Client,
     dispatch: Store.dispatch,
   };
 }

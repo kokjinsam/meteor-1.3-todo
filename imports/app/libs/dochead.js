@@ -1,4 +1,4 @@
-import { DocHead } from 'meteor/sammkj:dochead';
+import { DocHead } from 'meteor/kadira:dochead';
 
 export function setTitle(title) {
   if (typeof title === 'string' || title instanceof String) {

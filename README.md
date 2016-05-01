@@ -6,21 +6,9 @@
 - Mantra
 - React
 - Aphrodite
-- Radium
 - Redux
 - FlowRouter SSR
 - Apollo
-
-## Some other goodies:
-
-- Babel Plugins
-- React Hot Reload
-
-*These are enabled by using gadicc:ecmascript-hot*
-
-## Sample
-
-![gif](./.gifs/todo.gif)
 
 ## Some explanations / gotchas
 
@@ -52,6 +40,42 @@
   - Put CSS files in the `/public` folder then reference it in the `head`. Downside of this approach is that there will be glitches on subsequent page load. I'm guessing it's because all client-side code are sent to the client on the first page load. On subsequent load, CSS files are not referenced while server is rendering the page but client-code is still on the client.
   - Import CSS files in JS files. Same as issue as above.
 
+7. Aphrodite vs JSS
+
+   Differences:
+   - Aphrodite combines all styles under one style tag. Aphrodite also removes unused styles. On the other hand, JSS encourages one style tag per component. If you have more than 31 components, you will hit the IE9 31 style tags limit. Used or unused styles will still be rendered.
+   - Aphrodite's nested structure is similar to SCSS. While JSS's nested structure is similar to normal CSS. For example:
+   ```
+   // Aphrodite
+   const styles = {
+     test: {
+       backgroundColor: 'red',
+       '@media (min-width: 400px)': {
+         backgroundColor: 'blue',
+       }
+     }
+   }
+
+   // JSS
+   const styles = {
+     test; {
+       backgroundColor: 'red',
+     }
+     '@media (min-width: 400px)': {
+       test: {
+         backgroundColor: 'blue',
+       }
+     }
+   }
+   ```
+
+8. SSR & Aphrodite
+
+   SSR with Aphrodite is relatively easy. I modified `react-mounter` to accommodate Aphrodite. See `/imports/app/libs/mounter/server.js`. Then in the `routes.js` file, rehydration is needed. See `imports/app/modules/core/routes.js` L13.
+
+9. Apollo
+
+   Got the basic setup done. Need some work on SSR initial data.
 
 ## Right click -> view page source -> tadaa!
 

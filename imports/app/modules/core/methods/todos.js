@@ -33,8 +33,8 @@ export default function ({ Meteor, Collections }) {
          * Try to find `/imports/server/libs/test` on
          * your devtool. Tadaa. Nothin.
          */
-        const hiddenFunc = require('/imports/server/libs/test').default;
-        hiddenFunc();
+        // const hiddenFunc = require('/imports/server/libs/test').default;
+        // hiddenFunc();
 
         /**
         * To demonstrate latency compensation,
