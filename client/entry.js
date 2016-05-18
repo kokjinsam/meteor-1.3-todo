@@ -1,1 +1,1 @@
-import 'react-hot-loader/patch';
+import '../imports/client/main';

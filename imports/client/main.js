@@ -1,3 +1,4 @@
+import 'react-hot-loader/patch';
 import { createApp } from 'mantra-core';
 import initContext from './configs/context';
 
