@@ -2,11 +2,11 @@
 
 ## Things to do
 
-- [] Queries
-- [] Mutations
-- [] Reactively update
-- [] Authorization
-- [] Authentication
+- [x] Queries
+- [ ] Mutations
+- [ ] Reactive update
+- [ ] Authorization
+- [ ] Authentication
 
 ## Stack:
 
@@ -24,4 +24,8 @@
 
     **solution**: ensure that `graphql` is at `0.5.0`.
 
-2.
+2. `Meteor code must always run within a Fiber. Try wrapping callbacks that you pass to non-Meteor libraries with Meteor.bindEnvironment.`
+
+    **solution**: ...
+
+3.
