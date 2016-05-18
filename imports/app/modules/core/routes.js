@@ -1,19 +1,30 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import { mount } from '../../libs/mounter';
 import { StyleSheet } from 'aphrodite';
+import { AppContainer } from 'react-hot-loader';
 
 import { setTitle, addMetas, addLinks, addMeta } from '../../libs/dochead';
 import { defaultMetas, defaultLinks } from '../../configs/head';
 
-import TrioLayout from './containers/layout.trio';
+import ConsoleErrorReporter from './components/console-error-reporter';
 
-export default function (injectDeps, { FlowRouter }) {
+let localFlowRouter;
+export default function (injectDeps, { Meteor, FlowRouter }) {
+  localFlowRouter = FlowRouter;
+
   if (Meteor.isClient) {
     StyleSheet.rehydrate(window.renderedClasses);
   }
 
-  const TrioLayoutCtx = injectDeps(TrioLayout);
+  const TrioLayoutCtx = (props) => {
+    const TrioLayout = require('./containers/layout.trio').default;
+    const _TrioLayoutCtx = injectDeps(TrioLayout);
+    return (
+      <AppContainer errorReport={ConsoleErrorReporter}>
+        <_TrioLayoutCtx {...props} />
+      </AppContainer>
+    );
+  };
 
   FlowRouter.route('/', {
     name: 'hello',
@@ -47,5 +58,13 @@ export default function (injectDeps, { FlowRouter }) {
         content: () => (<p>test</p>),
       });
     },
+  });
+}
+
+if (module.hot) {
+  module.hot.accept([
+    './containers/layout.trio',
+  ], () => {
+    localFlowRouter._current.route._action(localFlowRouter._current.params);
   });
 }

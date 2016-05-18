@@ -1,5 +1,13 @@
 # Todo App
 
+## Things to do
+
+- [] SSR rehydration
+- [] GQL queries
+- [] GQL mutations
+- [] Meteor User Account
+- [] Make sure SSR works properly
+
 ## Stack:
 
 - Meteor 1.3.X

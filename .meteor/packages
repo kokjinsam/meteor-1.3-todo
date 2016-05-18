@@ -13,6 +13,7 @@ standard-minifier-css
 standard-minifier-js
 es5-shim
 ecmascript
+# gadicc:ecmascript-hot
 
 random
 kadira:dochead

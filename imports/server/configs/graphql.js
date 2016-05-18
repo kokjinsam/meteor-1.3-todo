@@ -4,10 +4,8 @@ import express from 'express';
 import proxyMiddleware from 'http-proxy-middleware';
 import schema from '../data/schema';
 import resolvers from '../data/resolvers';
-import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
 
-fetch = require('node-fetch');
+global.fetch = require('node-fetch');
 
 export default function () {
   const graphQLServer = express();

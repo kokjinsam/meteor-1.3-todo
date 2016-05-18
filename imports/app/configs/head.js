@@ -23,13 +23,5 @@ export const defaultLinks = [
   }, {
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
-  }, {
-    rel: 'stylesheet',
-    type: 'text/css',
-    href: '/css/normalize.css',
-  }, {
-    rel: 'stylesheet',
-    type: 'text/css',
-    href: '/css/base.css',
   },
 ];

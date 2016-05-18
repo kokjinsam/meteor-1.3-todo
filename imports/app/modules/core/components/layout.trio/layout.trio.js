@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
   red: {
-    backgroundColor: 'red',
+    backgroundColor: 'yellow',
     height: '300px',
     '@media (min-width: 400px)': {
       backgroundColor: 'blue',
@@ -24,6 +24,7 @@ const TrioLayout = ({
   todos,
 }) => (
   <div className={css(styles.red)}>
+    <div>Uhuhu lala omg wtf? yea</div>
     {content()}
     {
       todos.map((todo, index) => (

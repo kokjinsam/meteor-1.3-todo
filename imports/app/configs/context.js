@@ -21,6 +21,9 @@ export default function ({ reducers }) {
   const Client = new ApolloClient({
     networkInterface,
   });
+
+  // console.log(Client.store.getState());
+
   const reducer = combineReducers({
     ...reducers,
     apollo: Client.reducer(),

@@ -7,6 +7,7 @@
   ],
   "plugins": [
     "react-require",
-    "jsx-control-statements"
+    "jsx-control-statements",
+    "react-hot-loader/babel"
   ]
 }
