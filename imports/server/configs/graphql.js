@@ -1,11 +1,9 @@
 import { WebApp } from 'meteor/webapp';
-import { apolloServer } from 'graphql-tools';
+import { apolloServer } from 'apollo-server';
 import express from 'express';
 import proxyMiddleware from 'http-proxy-middleware';
-import schema from '../data/schema';
-import resolvers from '../data/resolvers';
-
-global.fetch = require('node-fetch');
+import schema from './schema';
+import resolvers from './resolvers';
 
 export default function () {
   const graphQLServer = express();

@@ -1,4 +1,3 @@
-// import dispatchers from './dispatchers';
 import gql from 'apollo-client/gql';
 
 export default {

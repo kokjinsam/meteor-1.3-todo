@@ -3,7 +3,7 @@
 ## Things to do
 
 - [x] Queries
-- [ ] Mutations
+- [x] Mutations
 - [ ] Reactive update
 - [ ] Authorization
 - [ ] Authentication
@@ -26,6 +26,6 @@
 
 2. `Meteor code must always run within a Fiber. Try wrapping callbacks that you pass to non-Meteor libraries with Meteor.bindEnvironment.`
 
-    **solution**: ...
+    **solution**: if you have `gadicc:ecmascript-hot`, remove the package. Use `ecmascript` instead.
 
 3.

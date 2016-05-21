@@ -1,23 +1,24 @@
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 import { Todos } from '../../lib/collections';
 
-const resolvers = {
-  RootQuery: {
+const rootResolvers = {
+  Query: {
     async allTodos() {
       return Todos.find().fetch();
     },
   },
-  RootMutation: {
+  Mutation: {
     async createTodo(_, { todo }) {
       const createdAt = new Date();
-      const newTodoID = Todos.insert({
+      Todos.insert({
         todo,
         createdAt,
         completed: false,
       });
-
-      return [newTodoID];
+      return todo;
     },
   },
 };
 
-export default resolvers;
+export default rootResolvers;
