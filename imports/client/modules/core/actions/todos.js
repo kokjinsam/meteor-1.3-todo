@@ -1,27 +1,27 @@
-import gql from 'apollo-client/gql';
+import apollo from 'apollo-tools';
+import { Random } from 'meteor/random';
 
 export default {
   addTodo({ Client }) {
-    Client.mutate({
-      mutation: gql`
+    const options = {
+      mutation: `
         mutation createTodo($todo: String) {
           createTodo(todo: $todo)
-        }`,
+        }
+      `,
       variables: {
-        todo: 'some todo',
+        todo: `new todo ${Random.id()}`,
       },
-    }).then((graphQLResult) => {
-      const { errors, data } = graphQLResult;
+    };
 
-      if (data) {
-        console.log('got data', data);
+    apollo(Client).mutateWith(options, (err, res) => {
+      if (err) {
+        console.log(err);
       }
 
-      if (errors) {
-        console.log('got some GraphQL execution errors', errors);
+      if (res) {
+        console.log(res);
       }
-    }).catch((ex) => {
-      console.log('there was an error sending the query', ex);
     });
   },
 };

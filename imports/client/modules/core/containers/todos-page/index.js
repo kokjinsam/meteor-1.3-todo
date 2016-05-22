@@ -1,16 +1,18 @@
 import TodosPage from '../../pages/todos';
-import composeWithQueries from 'react-komposer-queries';
+import composeWatchQuery from 'react-komposer-watchQuery';
 import { useDeps, composeAll } from 'mantra-core';
 
-const query = `
-  allTodos {
-    _id
-    todo
-    createdAt
-  }
-`;
+const options = {
+  query: `
+    allTodos {
+      _id
+      todo
+      createdAt
+    }
+  `,
+};
 
-const dataMapper = ({
+const resultMapper = ({
   data,
   errors,
 }) => {
@@ -36,6 +38,6 @@ const mapDepsToProps = (context, actions) => {
 };
 
 export default composeAll(
-  composeWithQueries(query, dataMapper),
+  composeWatchQuery(options, resultMapper),
   useDeps(mapDepsToProps)
 )(TodosPage);

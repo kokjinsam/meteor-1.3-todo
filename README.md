@@ -4,7 +4,7 @@
 
 - [x] Queries
 - [x] Mutations
-- [ ] Reactive update
+- [x] Reactive update
 - [ ] Authorization
 - [ ] Authentication
 
