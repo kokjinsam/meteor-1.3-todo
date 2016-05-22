@@ -2,12 +2,26 @@
   "presets": [
     "meteor",
     "es2015",
-    "stage-0",
-    "react",
+    "react"
   ],
   "plugins": [
     "react-require",
     "jsx-control-statements",
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    "syntax-object-rest-spread",
+    "syntax-trailing-function-commas",
+    "syntax-do-expressions",
+    "syntax-function-bind",
+    "syntax-class-properties",
+    "syntax-decorators",
+    "syntax-export-extensions",
+    "syntax-exponentiation-operator",
+    "transform-object-rest-spread",
+    "transform-function-bind",
+    "transform-export-extensions",
+    "transform-exponentiation-operator",
+    "transform-do-expressions",
+    "transform-decorators",
+    "transform-class-properties"
   ]
 }

@@ -1,5 +1,3 @@
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
 import { Todos } from '../../lib/collections';
 
 const rootResolvers = {
