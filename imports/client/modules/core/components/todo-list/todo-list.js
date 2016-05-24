@@ -18,7 +18,14 @@ const TodoList = ({
         <ul>
         {
           todos.map((todo) => (
-            <li key={todo._id}>{todo.todo} - {todo._id}</li>
+            <li
+              style={{
+                padding: '1.6rem',
+              }}
+              key={todo._id}
+            >
+              {todo.todo} - {todo._id}
+            </li>
           ))
         }
         </ul>

@@ -1,14 +1,11 @@
 import configureGraphQL from './configs/graphql';
-// import { configureGraphQLServer } from 'apollo-tools';
-// import schema from './configs/schema';
-// import resolvers from './configs/resolvers';
+import schema from './data/schema';
+import resolvers from './data/resolvers';
 import seed from './configs/seed';
 
-configureGraphQL();
-/*
-configureGraphQLServer({
+configureGraphQL({
   schema,
   resolvers,
 });
-*/
+
 seed();

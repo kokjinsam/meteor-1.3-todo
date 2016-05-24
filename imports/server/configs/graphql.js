@@ -2,10 +2,8 @@ import { WebApp } from 'meteor/webapp';
 import { apolloServer } from 'apollo-server';
 import express from 'express';
 import proxyMiddleware from 'http-proxy-middleware';
-import schema from './schema';
-import resolvers from './resolvers';
 
-export default function () {
+export default function ({ schema, resolvers }) {
   const graphQLServer = express();
   const GRAPHQL_PORT = 4000;
 
