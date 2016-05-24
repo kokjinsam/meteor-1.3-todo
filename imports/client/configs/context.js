@@ -5,15 +5,13 @@ import { Tracker } from 'meteor/tracker';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { configureGraphQLClient } from 'apollo-tools';
 
 export default function ({ reducers }) {
-  const url = Meteor.absoluteUrl('graphql');
-  const networkInterface = createNetworkInterface(url);
-  const Client = new ApolloClient({
-    networkInterface,
+  const Client = configureGraphQLClient({
+    url: '/graphql',
+    auth: false,
   });
-
   const reducer = combineReducers({
     ...reducers,
     apollo: Client.reducer(),

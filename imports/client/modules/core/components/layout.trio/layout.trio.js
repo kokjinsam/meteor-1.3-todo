@@ -7,8 +7,6 @@ const propTypes = {
   topNavigation: PropTypes.func,
   content: PropTypes.func.isRequired,
   footer: PropTypes.func,
-  store: PropTypes.any,
-  client: PropTypes.any,
 };
 
 const TrioLayout = ({

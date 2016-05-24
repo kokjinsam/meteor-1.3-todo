@@ -1,13 +1,15 @@
 import TodosPage from '../../pages/todos';
-import composeWatchQuery from 'react-komposer-watchQuery';
+import { composeWatchQuery } from 'react-komposer-tools';
 import { useDeps, composeAll } from 'mantra-core';
 
 const options = {
   query: `
-    allTodos {
-      _id
-      todo
-      createdAt
+    query todos {
+        allTodos {
+        _id
+        todo
+        createdAt
+      }
     }
   `,
 };

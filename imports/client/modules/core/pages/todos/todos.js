@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import TodoInput from '../../components/todo-input';
 import TodoList from '../../components/todo-list';
 
 const propTypes = {
@@ -16,7 +15,6 @@ class TodosPage extends Component {
 
     return (
       <div>
-        <TodoInput />
         <TodoList todos={todos} />
         <button onClick={addTodo}>Add todo</button>
       </div>

@@ -1,17 +1,14 @@
-import apollo from 'apollo-tools';
+import { apollo } from 'apollo-tools';
 import { Random } from 'meteor/random';
 
 export default {
   addTodo({ Client }) {
     const options = {
       mutation: `
-        mutation createTodo($todo: String) {
-          createTodo(todo: $todo)
+        mutation createTodo {
+          createTodo(todo: "whut new todo ${Random.id()}")
         }
       `,
-      variables: {
-        todo: `new todo ${Random.id()}`,
-      },
     };
 
     apollo(Client).mutateWith(options, (err, res) => {
