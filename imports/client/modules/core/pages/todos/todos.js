@@ -15,6 +15,7 @@ class TodosPage extends Component {
 
     return (
       <div>
+        <a href="/test">test</a>
         <TodoList todos={todos} />
         <button onClick={addTodo}>Add todo</button>
       </div>

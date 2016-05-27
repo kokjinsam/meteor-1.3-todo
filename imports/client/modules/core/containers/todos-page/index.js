@@ -1,5 +1,5 @@
 import TodosPage from '../../pages/todos';
-import { composeWatchQuery } from 'react-komposer-tools';
+import { composeWithQuery } from 'react-komposer-tools';
 import { useDeps, composeAll } from 'mantra-core';
 
 const options = {
@@ -40,6 +40,6 @@ const mapDepsToProps = (context, actions) => {
 };
 
 export default composeAll(
-  composeWatchQuery(options, resultMapper),
+  composeWithQuery(options, resultMapper),
   useDeps(mapDepsToProps)
 )(TodosPage);

@@ -34,10 +34,27 @@ export default function (injectDeps, { FlowRouter, Client, Store }) {
 
       const TodosPage = require('./containers/todos-page').default;
       mount(TrioLayoutCtx, {
-        store: Store,
-        client: Client,
         topNavigation: () => (<p>Top navigation</p>),
         content: () => (<TodosPage />),
+        footer: () => (<p>Footer</p>),
+      });
+    },
+  });
+
+  FlowRouter.route('/test', {
+    name: 'test',
+    action() {
+      setTitle('Test');
+      addMetas(defaultMetas);
+      addLinks(defaultLinks);
+      addMeta({
+        name: 'description',
+        content: 'woohooo',
+      });
+
+      mount(TrioLayoutCtx, {
+        topNavigation: () => (<p>Top navigation</p>),
+        content: () => (<p>Test</p>),
         footer: () => (<p>Footer</p>),
       });
     },
