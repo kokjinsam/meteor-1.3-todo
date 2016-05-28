@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import TodoList from '../../components/todo-list';
 
 const propTypes = {
@@ -6,22 +6,16 @@ const propTypes = {
   addTodo: PropTypes.func.isRequired,
 };
 
-class TodosPage extends Component {
-  render() {
-    const {
-      todos,
-      addTodo,
-    } = this.props;
-
-    return (
-      <div>
-        <a href="/test">test</a>
-        <TodoList todos={todos} />
-        <button onClick={addTodo}>Add todo</button>
-      </div>
-    );
-  }
-}
+const TodosPage = ({
+  todos,
+  addTodo,
+}) => (
+  <div>
+    <a href="/test">test</a>
+    <TodoList todos={todos} />
+    <button onClick={addTodo}>Add todo</button>
+  </div>
+);
 
 TodosPage.propTypes = propTypes;
 
