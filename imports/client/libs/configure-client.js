@@ -53,11 +53,9 @@ function configureGraphQLClient(options = {}) {
     networkInterface: _networkInterface,
     queryTransformer: addTypenameToSelectionSet,
     dataIdFromObject: (result) => {
-      if (result.id && result.__typename) {
-        return result.__typename + result.id;
+      if (result._id && result.__typename) {
+        return result.__typename + result._id;
       }
-
-      return null;
     },
     ...others,
   });

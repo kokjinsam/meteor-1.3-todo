@@ -6,7 +6,10 @@ export default {
     const options = {
       mutation: `
         mutation createTodo {
-          createTodo(todo: "whut new todo ${Random.id()}")
+          createTodo(todo: "new todo ${Random.id()}") {
+            _id
+            todo
+          }
         }
       `,
     };

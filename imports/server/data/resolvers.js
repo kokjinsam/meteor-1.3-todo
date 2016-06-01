@@ -9,12 +9,16 @@ const rootResolvers = {
   Mutation: {
     async createTodo(_, { todo }) {
       const createdAt = new Date();
-      Todos.insert({
+      const todoId = Todos.insert({
         todo,
         createdAt,
         completed: false,
       });
-      return todo;
+
+      return {
+        _id: todoId,
+        todo,
+      };
     },
   },
 };

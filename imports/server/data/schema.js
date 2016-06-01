@@ -1,20 +1,19 @@
 // import todosSchema from '../schemas/todos';
 
 const rootSchema = [`
-  type Todos {
-    id: Int!
-    _id: String
-    todo: String
+  type Todo {
+    _id: String!
+    todo: String!
     createdAt: String
     completed: Boolean
   }
 
   type Query {
-    allTodos: [Todos]
+    allTodos: [Todo]
   }
 
   type Mutation {
-    createTodo(todo: String): String
+    createTodo(todo: String): Todo
   }
 
   schema {
