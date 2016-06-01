@@ -1,7 +1,38 @@
 import TodosPage from '../../pages/todos';
-import composeWithQuery from 'react-komposer-query';
-import { useDeps, composeAll } from 'mantra-core';
+// import composeWithQuery from 'react-komposer-query';
+import { useDeps, compose, composeAll } from 'mantra-core';
+import gql from 'apollo-client/gql';
 
+const mapQueryToProps = ({ context }, onData) => {
+  const { Client } = context();
+
+  const query = `
+    query todos {
+      allTodos {
+        _id
+        todo
+        createdAt
+      }
+    }
+  `;
+
+  const taggedQuery = gql`${query}`;
+
+  Client.query({
+    query: taggedQuery,
+    forceFetch: true,
+  }).then((graphQLResult) => {
+    onData(null, {
+      todos: graphQLResult.data.allTodos,
+      errors: graphQLResult.errors,
+    });
+  }).catch((ex) => {
+    onData(ex);
+  });
+};
+
+
+/*
 const options = {
   query: `
     query todos {
@@ -29,6 +60,7 @@ const resultMapper = ({
     errors,
   };
 };
+*/
 
 const mapDepsToProps = (context, actions) => {
   const {
@@ -42,6 +74,7 @@ const mapDepsToProps = (context, actions) => {
 };
 
 export default composeAll(
-  composeWithQuery(options, resultMapper),
+  // composeWithQuery(options, resultMapper),
+  compose(mapQueryToProps),
   useDeps(mapDepsToProps)
 )(TodosPage);
