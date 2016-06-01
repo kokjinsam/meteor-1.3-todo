@@ -1,4 +1,4 @@
-import { apollo } from 'apollo-tools';
+import apollo from '../../../libs/apollo';
 import { Random } from 'meteor/random';
 
 export default {

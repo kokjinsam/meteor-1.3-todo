@@ -5,9 +5,12 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "apollo-tools": "0.0.13",
+    "apollo-client": "^0.3.12",
+    "apollo-server": "^0.1.2",
     "domready": "^1.0.8",
-    "komorebi-utils": "0.0.6",
+    "express": "^4.13.4",
+    "http-proxy-middleware": "^0.15.0",
+    "komorebi-utils": "^0.0.6",
     "lodash.merge": "^4.4.0",
     "mantra-core": "^1.3.0",
     "meteor-node-stubs": "~0.2.0",
@@ -16,10 +19,10 @@
     "react-dom": "^15.0.1",
     "react-hot-loader": "^3.0.0-beta.2",
     "react-komposer": "^1.8.0",
-    "react-komposer-tools": "0.0.2",
+    "react-komposer-query": "^0.0.5",
     "react-mounter": "^1.2.0",
     "redux": "^3.4.0",
-    "redux-log-slow-reducers": "0.0.2",
+    "redux-log-slow-reducers": "^0.0.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1"
   },

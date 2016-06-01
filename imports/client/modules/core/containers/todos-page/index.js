@@ -1,18 +1,20 @@
 import TodosPage from '../../pages/todos';
-import { composeWithQuery } from 'react-komposer-tools';
+import composeWithQuery from 'react-komposer-query';
 import { useDeps, composeAll } from 'mantra-core';
 
 const options = {
   query: `
     query todos {
-        allTodos {
+      allTodos {
         _id
         todo
         createdAt
       }
     }
   `,
+  forceFetch: true,
 };
+
 
 const resultMapper = ({
   data,

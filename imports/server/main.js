@@ -1,9 +1,9 @@
-import configureGraphQL from './configs/graphql';
+import configureGraphQLServer from './configs/configure-server';
 import schema from './data/schema';
 import resolvers from './data/resolvers';
 import seed from './configs/seed';
 
-configureGraphQL({
+configureGraphQLServer({
   schema,
   resolvers,
 });

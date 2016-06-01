@@ -2,6 +2,7 @@
 
 const rootSchema = [`
   type Todos {
+    id: Int!
     _id: String
     todo: String
     createdAt: String

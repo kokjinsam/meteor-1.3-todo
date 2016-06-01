@@ -5,13 +5,11 @@ import { Tracker } from 'meteor/tracker';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import { configureGraphQLClient } from 'apollo-tools';
+import configureGraphQLClient from '../libs/configure-client';
 
 export default function ({ reducers }) {
-  const Client = configureGraphQLClient({
-    url: '/graphql',
-    auth: false,
-  });
+  const Client = configureGraphQLClient();
+
   const reducer = combineReducers({
     ...reducers,
     apollo: Client.reducer(),
