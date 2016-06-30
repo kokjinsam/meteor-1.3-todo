@@ -15,9 +15,20 @@ function configureGraphQLClient(options = {}) {
     throw new Error(error);
   }
 
+  /**
+   * Default to using Mongo _id
+   * For query, you need to return _id
+   */
+  const defaultDataIdFromObject = (result) => {
+    if (result._id && result.__typename) {
+      return result.__typename + result._id;
+    }
+  };
+
   const {
     urlName = 'graphql',
     auth = false,
+    dataIdFromObject = defaultDataIdFromObject,
     ...others,
   } = options;
 
@@ -52,11 +63,7 @@ function configureGraphQLClient(options = {}) {
   const Client = new ApolloClient({
     networkInterface: _networkInterface,
     queryTransformer: addTypenameToSelectionSet,
-    dataIdFromObject: (result) => {
-      if (result._id && result.__typename) {
-        return result.__typename + result._id;
-      }
-    },
+    dataIdFromObject,
     ...others,
   });
 

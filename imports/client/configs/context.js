@@ -2,36 +2,13 @@ import * as Collections from '../../lib/collections';
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Tracker } from 'meteor/tracker';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
-import configureGraphQLClient from '../libs/configure-client';
 
-export default function ({ reducers }) {
-  const Client = configureGraphQLClient();
-
-  const reducer = combineReducers({
-    ...reducers,
-    apollo: Client.reducer(),
-  });
-  const logger = createLogger();
-
-  // put all redux middlewares here
-  const middlewares = [
-    thunk,
-    logger,
-    Client.middleware(),
-  ];
-
-  const Store = createStore(reducer, applyMiddleware(...middlewares));
-
+export default function ({ Client }) {
   return {
     Meteor,
     FlowRouter,
     Collections,
     Tracker,
-    Store,
     Client,
-    dispatch: Store.dispatch,
   };
 }

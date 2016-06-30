@@ -1,20 +1,38 @@
 import 'react-hot-loader/patch';
-import { createApp } from 'mantra-core';
+import { createApp } from './libs/mantra-plus';
 import initContext from './configs/context';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import redux from 'mantra-redux';
+// import apollo from 'mantra-apollo';
+import configureGraphQLClient from './libs/configure-client';
 
 // modules
 import coreModule from './modules/core';
 
-// combine all module reducers
-const coreReducers = coreModule.reducers;
+const Client = configureGraphQLClient();
+const logger = createLogger();
+const middlewares = [
+  thunk,
+  logger,
+  Client.middleware(),
+];
+
 const reducers = {
-  ...coreReducers,
+  apollo: Client.reducer(),
 };
 
-// init context
-const context = initContext({ reducers });
-
 // create app
+const context = initContext({ Client });
 const app = createApp(context);
+
+app.loadMiddlewares([
+  // apollo(),
+  redux({
+    reducers,
+    middlewares,
+  }),
+]);
+
 app.loadModule(coreModule);
 app.init();

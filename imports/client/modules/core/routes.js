@@ -8,7 +8,7 @@ import { defaultMetas, defaultLinks } from '../../configs/head';
 import ConsoleErrorReporter from './components/console-error-reporter';
 
 let localFlowRouter;
-export default function (injectDeps, { FlowRouter, Client, Store }) {
+export default function (injectDeps, { FlowRouter }) {
   localFlowRouter = FlowRouter;
 
   const TrioLayoutCtx = (props) => {

@@ -1,8 +1,9 @@
-import apollo from '../../../libs/apollo';
+import { apollo } from 'apollo-tools';
 import { Random } from 'meteor/random';
 
 export default {
-  addTodo({ Client }) {
+  addTodo({ Client, Store }) {
+    console.log(Store.getState());
     const options = {
       mutation: `
         mutation createTodo {
@@ -21,6 +22,7 @@ export default {
 
       if (res) {
         console.log(res);
+        console.log(Store.getState());
       }
     });
   },
