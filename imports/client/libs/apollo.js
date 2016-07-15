@@ -1,4 +1,4 @@
-import gql from 'apollo-client/gql';
+import gql from 'graphql-tag/gql';
 
 export default function apollo(Client) {
   return {

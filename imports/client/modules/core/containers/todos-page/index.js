@@ -2,7 +2,7 @@ import TodosPage from '../../pages/todos';
 // import composeWithQuery from 'react-komposer-query';
 import { compose, composeAll } from 'react-komposer-plus';
 import { useDeps } from 'mantra-plus';
-import gql from 'apollo-client/gql';
+import gql from 'graphql-tag';
 
 const mapQueryToProps = ({ context }, onData) => {
   const { Client } = context();
