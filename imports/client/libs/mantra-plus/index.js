@@ -1,5 +1,7 @@
 import { injectDeps } from 'react-simple-di';
 
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-param-reassign */
 class App {
   constructor(context) {
     if (!context) {

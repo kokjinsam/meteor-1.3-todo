@@ -1,5 +1,11 @@
+/**
+ * this is exported to an NPM Package, mantra-apollo
+ * recommended to use official Meteor package.
+ * meteor add apollo
+ */
+
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
-import { addTypenameToSelectionSet } from 'apollo-client/queries/queryTransform';
+import { addTypename } from 'apollo-client/queries/queryTransform';
 
 function configureGraphQLClient(options = {}) {
   const Meteor = Package['meteor'].Meteor;
@@ -23,6 +29,8 @@ function configureGraphQLClient(options = {}) {
     if (result._id && result.__typename) {
       return result.__typename + result._id;
     }
+
+    return null;
   };
 
   const {
@@ -62,7 +70,7 @@ function configureGraphQLClient(options = {}) {
 
   const Client = new ApolloClient({
     networkInterface: _networkInterface,
-    queryTransformer: addTypenameToSelectionSet,
+    queryTransformer: addTypename,
     dataIdFromObject,
     ...others,
   });
