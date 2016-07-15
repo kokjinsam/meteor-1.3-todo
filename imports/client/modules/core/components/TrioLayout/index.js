@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { wrapStyle } from 'komorebi-utils/radium';
+import { wrapStyle } from '../../../../libs/radium';
 
 import styles from './styles';
 
@@ -26,7 +26,7 @@ const TrioLayout = ({
 
       <If condition={content}>
         {content()}
-      <Else />
+        <Else />
         <p>No content is given.</p>
       </If>
     </div>

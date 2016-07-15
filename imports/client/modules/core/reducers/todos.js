@@ -3,7 +3,7 @@ import {
   TODO_SAVING,
   TODO_CHECKED,
   TODO_CHECKING,
-} from '../actions/types';
+} from '../constants';
 
 const defaultState = {
   saving: false,

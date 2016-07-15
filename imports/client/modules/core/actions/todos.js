@@ -1,4 +1,4 @@
-import { apollo } from 'apollo-tools';
+import { apollo } from '../../../libs/mantra-apollo';
 import { Random } from 'meteor/random';
 
 export default {

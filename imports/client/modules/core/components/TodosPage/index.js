@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import TodoList from '../../components/todo-list';
+import TodoList from '../../components/TodoList';
 
 const propTypes = {
   todos: PropTypes.array.isRequired,

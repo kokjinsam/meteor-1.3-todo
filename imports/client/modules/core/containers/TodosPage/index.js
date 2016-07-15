@@ -1,8 +1,14 @@
-import TodosPage from '../../pages/todos';
+import TodosPage from '../../components/TodosPage';
 // import composeWithQuery from 'react-komposer-query';
 import { compose, composeAll } from 'react-komposer-plus';
 import { useDeps } from 'mantra-plus';
 import gql from 'graphql-tag';
+
+/**
+ * this is how we use apollo query without
+ * react-apollo or react-komposer-query
+ *
+ */
 
 const mapQueryToProps = ({ context }, onData) => {
   const { Client } = context();
@@ -32,6 +38,11 @@ const mapQueryToProps = ({ context }, onData) => {
   });
 };
 
+
+/**
+ * code below uses react-komposer-query as a
+ * replacement of code above
+ */
 
 /*
 const options = {
@@ -63,16 +74,10 @@ const resultMapper = ({
 };
 */
 
-const mapDepsToProps = (context, actions) => {
-  const {
-    addTodo,
-  } = actions.todos;
-
-  return {
-    addTodo,
-    context: () => context,
-  };
-};
+const mapDepsToProps = (context, actions) => ({
+  addTodo: actions.todos.addTodo,
+  context: () => context,
+});
 
 export default composeAll(
   // composeWithQuery(options, resultMapper),

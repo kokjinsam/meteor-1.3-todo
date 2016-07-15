@@ -2,17 +2,17 @@ import React from 'react';
 import { mount } from 'react-mounter';
 import { AppContainer } from 'react-hot-loader';
 
-import { setTitle, addMetas, addLinks, addMeta } from 'komorebi-utils/dochead';
+import { setTitle, addMetas, addLinks, addMeta } from '../../libs/dochead';
 import { defaultMetas, defaultLinks } from '../../configs/head';
 
-import ConsoleErrorReporter from './components/console-error-reporter';
+import ConsoleErrorReporter from './components/ConsoleErrorReporter';
 
 let localFlowRouter;
 export default function (injectDeps, { FlowRouter }) {
   localFlowRouter = FlowRouter;
 
   const TrioLayoutCtx = (props) => {
-    const TrioLayout = require('./components/layout.trio').default;
+    const TrioLayout = require('./components/TrioLayout').default;
     const FullTrioLayout = injectDeps(TrioLayout);
     return (
       <AppContainer errorReport={ConsoleErrorReporter}>
@@ -32,7 +32,7 @@ export default function (injectDeps, { FlowRouter }) {
         content: 'woohooo',
       });
 
-      const TodosPage = require('./containers/todos-page').default;
+      const TodosPage = require('./containers/TodosPage').default;
       mount(TrioLayoutCtx, {
         topNavigation: () => (<p>Top navigation</p>),
         content: () => (<TodosPage />),
@@ -63,8 +63,8 @@ export default function (injectDeps, { FlowRouter }) {
 
 if (module.hot) {
   module.hot.accept([
-    './components/layout.trio',
-    './containers/todos-page',
+    './components/TrioLayout',
+    './containers/TodosPage',
   ], () => {
     localFlowRouter._current.route._action(localFlowRouter._current.params);
   });

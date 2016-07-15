@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Todo from '../Todo';
 
 const propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
@@ -14,23 +15,19 @@ const TodoList = ({
     <If condition={todos}>
       <If condition={todos.length === 0}>
         <h1>Uh oh, no todos</h1>
-      <Else />
+        <Else />
         <ul>
         {
           todos.map((todo) => (
-            <li
-              style={{
-                padding: '1.6rem',
-              }}
+            <Todo
               key={todo._id}
-            >
-              {todo.todo} - {todo._id}
-            </li>
+              todo={todo}
+            />
           ))
         }
         </ul>
       </If>
-    <Else />
+      <Else />
       <p>Something is wrong</p>
     </If>
   </div>
