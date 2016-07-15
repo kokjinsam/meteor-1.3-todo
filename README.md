@@ -4,9 +4,10 @@
 
 - [x] Queries
 - [x] Mutations
-- [x] Reactive update
-- [ ] Authorization
+- [x] Poll update
+- [ ] Fragments
 - [ ] Authentication
+- [ ] Authorization
 
 ## Stack:
 
@@ -22,7 +23,7 @@
 
 1. `Schema must be an instance of GraphQLSchema. Also ensure that there are not multiple versions of GraphQL installed in your node_modules directory.`
 
-    **solution**: ensure that `graphql` is at `0.5.0`.
+    **solution**: ~~ensure that `graphql` is at `0.5.0`~~. No longer valid.
 
 2. `Meteor code must always run within a Fiber. Try wrapping callbacks that you pass to non-Meteor libraries with Meteor.bindEnvironment.`
 
